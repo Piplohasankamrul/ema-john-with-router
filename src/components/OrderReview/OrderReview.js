@@ -9,7 +9,6 @@ const OrderReview = () => {
     const [products , setProducts] = useProducts();
     const [cart , setCart] = useCart(products);
     const handleRemoveProduct =key => {
-        console.log(key);
         const newCart = cart.filter(product => product.key !== key);
         setCart(newCart);
         deleteFromDb(key);

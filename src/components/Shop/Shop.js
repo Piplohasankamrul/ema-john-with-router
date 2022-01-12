@@ -3,23 +3,25 @@ import Cart from '../Cart/Cart';
 import Product from '../Product/Product';
 import { addToDb, getStoredCart } from '../../utilities/fakedb';
 import './Shop.css';
+import useProducts from '../../hooks/useProducts';
+import useCart from '../../hooks/useCart';
 
 const Shop = () => {
-    const [products, setProducts] = useState([]);
-    const [cart, setCart] = useState([]);
+    const [products, setProducts] = useProducts([]);
+    const [cart, setCart] = useCart(products);
     // products to be rendered on the UI
-    const [displayProducts, setDisplayProducts] = useState([]);
+    const [displayProducts, setDisplayProducts] = useProducts([]);
 
-    useEffect(() => {
+    /* useEffect(() => {
         fetch('./products.JSON')
             .then(res => res.json())
             .then(data => {
                 setProducts(data);
                 setDisplayProducts(data);
             });
-    }, []);
+    }, []); */
 
-    useEffect(() => {
+   /*  useEffect(() => {
         if (products.length) {
             const savedCart = getStoredCart();
             const storedCart = [];
@@ -33,7 +35,7 @@ const Shop = () => {
             }
             setCart(storedCart);
         }
-    }, [products])
+    }, [products]) */
 
     const handleAddToCart = (product) => {
         const newCart = [...cart, product];
